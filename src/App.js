@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [reminders, setReminders] = useState([
+    "Reminder 1",
+    "Reminder 2",
+    "Buy chocolate",
+  ]);
+
+  const add = () => {
+    // ❌
+    // reminders.push(`Reminder ${reminders.length}`);
+    // setReminders(reminders)
+
+    // ✅
+    setReminders([
+      ...reminders,
+      `Reminder ${reminders.length}`,
+      `Other Reminder ${reminders.length + 1}`,
+    ]);
+    console.log({ reminders });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <h1>Reminders</h1>
       </header>
+      <main>
+        <ul>
+          {reminders.map((reminder, index) => (
+            <ReminderUI key={`Reminders-${index}`} reminder={reminder} />
+          ))}
+          <li>
+            <button onClick={add}>Add new reminder</button>
+          </li>
+        </ul>
+      </main>
     </div>
   );
 }
 
 export default App;
+
+function ReminderUI({ reminder, completed }) {
+  return (
+    <li>
+      <p>{reminder}</p>
+      {completed ? <span>Completado</span> : <></>}
+    </li>
+  );
+}
