@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import { getReminders } from "./Services/reminders.service";
 
 function App() {
-  const [reminders, setReminders] = useState([
-    "Reminder 1",
-    "Reminder 2",
-    "Buy chocolate",
-  ]);
+  const [reminders, setReminders] = useState([]);
+
+  useEffect(() => {
+    getReminders().then((data) => setReminders(data));
+  }, []);
 
   const add = () => {
     // ❌
@@ -16,8 +17,7 @@ function App() {
     // ✅
     setReminders([
       ...reminders,
-      `Reminder ${reminders.length}`,
-      `Other Reminder ${reminders.length + 1}`,
+      { title: `Reminder ${reminders.length + 1}`, id: reminders.length + 1 },
     ]);
     console.log({ reminders });
   };
@@ -29,18 +29,8 @@ function App() {
       </header>
       <main className="reminders">
         <ul className="reminders-list">
-          {reminders.map((reminder, index) => (
-            <ReminderUI key={`Reminders-${index}`} reminder={reminder} />
-          ))}
-          <li className="list-element">
-            <button className="reminders-add" onClick={add}>
-              +
-            </button>
-          </li>
-        </ul>
-        <ul className="reminders-list">
-          {reminders.map((reminder, index) => (
-            <ReminderUI key={`Reminders-${index}`} reminder={reminder} />
+          {reminders.map((reminder) => (
+            <ReminderUI key={`Reminders-${reminder.id}`} reminder={reminder} />
           ))}
           <li className="list-element">
             <button className="reminders-add" onClick={add}>
@@ -55,11 +45,13 @@ function App() {
 
 export default App;
 
-function ReminderUI({ reminder, completed }) {
+function ReminderUI({ reminder }) {
+  const { completed, id, title, userId } = reminder;
   return (
     <li className="list-element">
-      <p>{reminder}</p>
-      {completed ? <span>Completado</span> : <></>}
+      <p>
+        {id}.- {title} {completed ? <span>✅</span> : <></>}
+      </p>
     </li>
   );
 }
