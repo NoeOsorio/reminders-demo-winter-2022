@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./App.css";
 import { getReminders } from "./Services/reminders.service";
+import { getReminders as getRemindersSelector } from "./Services/reminders.reducer";
 
 function App() {
-  const [reminders, setReminders] = useState([]);
+  const reminders = useSelector(getRemindersSelector);
 
   useEffect(() => {
-    getReminders().then((data) => setReminders(data));
+    getReminders();
   }, []);
 
   const add = () => {
@@ -15,10 +17,10 @@ function App() {
     // setReminders(reminders)
 
     // ✅
-    setReminders([
-      ...reminders,
-      { title: `Reminder ${reminders.length + 1}`, id: reminders.length + 1 },
-    ]);
+    // setReminders([
+    //   ...reminders,
+    //   { title: `Reminder ${reminders.length + 1}`, id: reminders.length + 1 },
+    // ]);
     console.log({ reminders });
   };
 

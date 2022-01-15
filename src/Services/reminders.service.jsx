@@ -1,4 +1,6 @@
 import axios from "axios";
+import store from "../Redux/store";
+import { setReminders } from "./reminders.reducer";
 
 export async function getReminders() {
   // Una llamda de api
@@ -7,9 +9,10 @@ export async function getReminders() {
   const url = "https://jsonplaceholder.typicode.com/todos";
 
   try {
-    const response = await axios.get(url);
-    console.log(response.data);
-    return response.data;
+    const { data } = await axios.get(url);
+    console.log(data);
+    store.dispatch(setReminders(data));
+    return data;
   } catch (error) {
     console.error("Error on getReminders: ", error);
     return null;
