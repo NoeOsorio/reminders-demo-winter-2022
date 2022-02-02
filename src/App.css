@@ -82,6 +82,45 @@ html {
   flex-direction: column;
 }
 
-.actions__completed {
-  width: 2em;
+/*Custom checkbox*/
+.status{
+  position: relative;
+  width:24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.status__checkbox{
+  visibility: hidden;
+}
+.status__label{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  width: 100%;
+  border: 3px solid black;
+  box-sizing: border-box;
+  display: block;
+  border-radius: 50%;
+}
+.status__checkbox:checked + .status__label{
+  background-color: black;
+}
+.status__checkbox:checked + .status__label::before,
+.status__checkbox:checked + .status__label::after{
+  position: absolute;
+  content: '';
+  top: 4px;
+  bottom: 4px;
+  left: 6px;
+  right: 6px;
+}
+.status__checkbox:checked + .status__label::before{
+  /* transform: rotate(35deg); */
+  transform: rotate(45deg);
+  background-color: white;
+}
+.status__checkbox:checked + .status__label::after{
+  /* transform: translateX(-3px) rotate(35deg) translateY(-4px); */
+  transform: translateX(-3px) rotate(45deg) translateY(-4px);
+  background-color: black;
 }
