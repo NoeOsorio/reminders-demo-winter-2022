@@ -1,8 +1,8 @@
 html {
-  background-color: black;
+  background-color: white;
 }
 .container {
-  background-color: black;
+  background-color: white;
   height: 100vh;
 }
 
@@ -10,44 +10,78 @@ html {
   margin: 4em 1em 1em 1em;
 }
 
-.header-title {
+.header__title {
   margin: 0;
-  color: grey;
-  font-size: clamp(48px, 10vw, 128px);
+  color: black;
+  font-size: 22pt;
+  text-align: center;
   /* border: clamp(10px, 5vw, 40px) solid yellowgreen; */
 }
 
 .reminders {
-  color: white;
   display: flex;
-  background: tomato;
-
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 1em;
 }
 
-.reminders-list {
-  background: thistle;
-  width: 40%;
+.reminder {
+  margin: 0.75em 2em 0.75em 2em;
+  background-color: #29b6f6;
+  border-radius: 16px;
+  padding: 1em;
 }
 
-.list-element {
-  list-style: none;
-  font-size: clamp(24px, 5vw, 48px);
+.reminder__meta,
+.reminder__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.reminders-add {
-  background-color: grey;
-  opacity: 80%;
-  border: none;
-  border-radius: 50px;
-  font-size: 24px;
-  font-weight: 800;
+.meta__tags {
+  display: flex;
+  gap: 0.5em;
+}
+
+.tag {
+  border: 2px solid #90a4ae6b;
   padding: 0.25em 0.5em;
+  border-radius: 16px;
+  font-weight: 600;
 }
 
-.reminders-add:hover {
+.meta__edit {
+  background: none;
+  border: none;
+  font-size: 1.5em;
   cursor: pointer;
-  opacity: 50%;
+}
+
+.meta__edit:hover {
+  background-color: #039be5;
+  border-radius: 16px;
+}
+
+.meta__edit:active {
+  background-color: #0288d1;
+}
+
+.reminder__title {
+  text-transform: capitalize;
+}
+
+.reminder__actions {
+  gap: 2em;
+  font-weight: 600;
+  font-size: 10pt;
+}
+
+.actions__date {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions__completed {
+  width: 2em;
 }

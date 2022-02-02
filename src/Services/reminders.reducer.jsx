@@ -12,10 +12,14 @@ export const slice = createSlice({
       ...state,
       list,
     }),
+    addReminder: (state, { payload }) => ({
+      ...state,
+      list: [...state.list, payload],
+    }),
   },
 });
 
-export const { setReminders } = slice.actions;
+export const { setReminders, addReminder } = slice.actions;
 
 export default slice.reducer;
 
