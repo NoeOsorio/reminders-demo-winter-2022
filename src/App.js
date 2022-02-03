@@ -76,11 +76,10 @@ function ReminderUI({ reminder }) {
           <span className="actions__date--day">Fecha</span>
           <span className="actions__date--hour">Hora</span>
         </div>
-        <input
-          className="actions__completed"
-          defaultChecked={completed}
-          type="checkbox"
-        />
+        <div className="status">
+          <input className="status__checkbox" type="checkbox"  defaultChecked={completed} id={`check-${id}`} />
+          <label className="status__label" htmlFor={`check-${id}`}></label>
+        </div>
       </div>
     </section>
   );
