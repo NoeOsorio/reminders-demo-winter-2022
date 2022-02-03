@@ -52,6 +52,11 @@ function App() {
           ))}
         </div>
       </main>
+      <div className="reminders__add">
+        <button className="add__button" onClick={add}>
+          + Add task
+        </button>
+      </div>
     </div>
   );
 }
@@ -77,7 +82,12 @@ function ReminderUI({ reminder }) {
           <span className="actions__date--hour">Hora</span>
         </div>
         <div className="status">
-          <input className="status__checkbox" type="checkbox"  defaultChecked={completed} id={`check-${id}`} />
+          <input
+            className="status__checkbox"
+            type="checkbox"
+            defaultChecked={completed}
+            id={`check-${id}`}
+          />
           <label className="status__label" htmlFor={`check-${id}`}></label>
         </div>
       </div>

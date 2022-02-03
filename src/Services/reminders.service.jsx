@@ -6,7 +6,7 @@ export async function getReminders() {
   // Una llamda de api
   // Cachar errores
   // Regresar la data que recibe de esa api
-  const url = "https://jsonplaceholder.typicode.com/todos";
+  const url = "https://jsonplaceholder.typicode.com/todos?_start=0&_limit=5";
 
   try {
     const { data } = await axios.get(url);
